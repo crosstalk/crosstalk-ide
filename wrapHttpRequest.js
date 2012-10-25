@@ -46,7 +46,7 @@ var wrapHttpRequest = function wrapHttpRequest ( wrapper, protocol ) {
     requestObj.localAddress = options.localAddress;
     requestObj.socketPath = options.socketPath;
     requestObj.method = options.method;
-    requestObj.path = options.path;
+    requestObj.url = options.path;
     requestObj.auth = options.auth;
     requestObj.agent = options.agent;
 
@@ -101,8 +101,8 @@ var wrapHttpRequest = function wrapHttpRequest ( wrapper, protocol ) {
       var logBody = wroteBinaryData ? 
          "<binary data>" : requestObj.body.toString( 'utf-8' );
 
-      logHttpRequest( wrapper.workerName, requestObj.method, requestObj.path,
-        requestObj.headers, logBody, { outbound : true, protocol : protocol } );
+      logHttpRequest( wrapper.workerName, requestObj, logBody, 
+        { outbound : true, protocol : protocol } );
 
       // create http testing helper
       var helper = httpRequestHelper( wrapper, requestObj );

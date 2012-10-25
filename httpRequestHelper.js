@@ -56,7 +56,7 @@ var helper = function helper ( wrapper, requestObj ) {
 
   _helper.pathEquals = function pathEquals ( path ) {
 
-    assert.equal( requestObj.path, path );
+    assert.equal( requestObj.url, path );
     return _helper;
 
   }; // pathEquals
@@ -67,6 +67,13 @@ var helper = function helper ( wrapper, requestObj ) {
     return _helper;
 
   }; // protocolEquals
+
+  _helper.urlEquals = function urlEquals ( url ) {
+
+    assert.equal( requestObj.url, url );
+    return _helper;
+
+  }; // urlEquals
 
   _helper.worker = function worker () {
     return wrapper;

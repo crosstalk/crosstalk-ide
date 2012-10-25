@@ -11,26 +11,26 @@ var stdjson = require( 'stdjson' )(),
 // ### function logHttpRequest ( workerName, method, path, headers, body,
 //        options )
 // #### @workerName {string} the name of the worker
-// #### @method {string} http method
-// #### @path {string} http path
-// #### @headers {object} http headers
+// #### @request {object} http(s) request object
 // #### @body {string|object} http request body
 // #### @options {object} logging options
 // Logs the http request to stdout.
 //
-var logHttpRequest = function logHttpRequest ( workerName, method, path, 
-    headers, body, options ) {
+var logHttpRequest = function logHttpRequest ( workerName, request, body, 
+   options ) {
 
-  options = options || {}
+  options = options || {};
+  request = request || {};
 
   var protocol = options.protocol || "HTTP";
   var notice = options.outbound ? "REQUESTING" : "HANDLING";
 
   stdjson.log( notice + " " + protocol.toUpperCase(), {
     workerName : workerName,
-    method : method,
-    path : path,
-    headers : headers,
+    host : request.host,
+    method : request.method,
+    url : request.url,
+    headers : request.headers,
     body : body
   });
 

@@ -228,8 +228,7 @@ var constructReqRes = function constructReqRes ( requestListener, responseCache,
 
   var logBody = options.bodyIsBinary ? "<binary data>" : body;
 
-  logHttpRequest( wrapper.workerName, request.method, path, options.headers, 
-     logBody );
+  logHttpRequest( wrapper.workerName, request, logBody );
 
   // execute the request emulation
   requestListener( request, response );
