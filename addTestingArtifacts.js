@@ -4,7 +4,8 @@
  * (C) 2012 Crosstalk Systems Inc.
  */
 
-var createHttpHelpers = require( './createHttpHelpers' ),
+var assert = require( 'assert' ),
+    createHttpHelpers = require( './createHttpHelpers' ),
     events = require( 'events' ),
     matchesHistoricalEvent = require( './matchesHistoricalEvent' ),
     shouldBeSilent = require( './shouldBeSilent' ),
