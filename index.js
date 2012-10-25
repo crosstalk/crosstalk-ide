@@ -90,6 +90,9 @@ var run = function run ( workerPath, options, callback ) {
 
   } // catch ( error )
 
+  // attach proxySend so that we can send messages to crosstalk
+  wrapper.proxySend = send;
+
   return callback ? callback( null, wrapper ) : wrapper;
 
 }; // run

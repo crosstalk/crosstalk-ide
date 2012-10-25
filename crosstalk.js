@@ -110,7 +110,38 @@ var crosstalk = function crosstalk ( wrapper, options ) {
     wrapper.history.out( message, data, scope, callback );
     options.silent ? null : logEmit( message, data, scope, options );
 
-    wrapper.emit( message, data, scope, callback );
+    // if we are proxying to crosstalk swarm, send the message out
+    if ( wrapper.proxy && message ) {
+      
+      if ( ! Array.isArray( wrapper.proxy ) ) {
+
+        if ( message.match( wrapper.proxy  ) ) {
+
+          return wrapper.proxySend( wrapper.crosstalkToken, message, data, 
+             scope, callback );
+
+        } // if ( message.match( wrapper.proxy ) )
+
+      } else {
+
+        var matches = false;
+
+        wrapper.proxy.forEach( function ( regex ) {
+          matches = message.match( regex );
+        });
+
+        if ( matches ) {
+
+          return wrapper.proxySend( wrapper.crosstalkToken, message, data, 
+             scope, callback );
+
+        } // if ( matches )
+
+      } // else
+
+    } // if ( wrapper.proxy && message )
+    
+    return wrapper.emit( message, data, scope, callback );
 
   }; // context.emit
 
