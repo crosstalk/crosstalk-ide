@@ -85,7 +85,7 @@ var run = function run ( workerPath, options, callback ) {
 
   } catch ( error ) {
 
-    stjdson.error( createVmErrorMessage( error, workerPath ), error );
+    stdjson.error( createVmErrorMessage( error, workerPath ), error );
     return callback ? callback( error ) : error;
 
   } // catch ( error )
