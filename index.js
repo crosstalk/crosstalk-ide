@@ -4,13 +4,15 @@
  * (C) 2012 Crosstalk Systems Inc.
  */
 
-var clone = require( './clone' ),
+var _require = require( './require' ),
+    clone = require( './clone' ),
     createVmErrorMessage = require( './createVmErrorMessage' ),
     fs = require( 'fs' ),
     matchers = require( './matchers' ),
     request = require( 'request' ),
     stdjson = require( 'stdjson' )(),
     workerWrapper = require( './workerWrapper' ),
+    wrapHttpRequest = require( './wrapHttpRequest' ),
     vm = require( 'vm' );
 
 var ENVIRONMENT_ID = 0, // global environment id counter
@@ -68,10 +70,16 @@ var run = function run ( workerPath, options, callback ) {
 
   // create worker context
   var context = {
-    crosstalk : Object.freeze( crosstalkGlobal ),
-    Buffer : Object.freeze( Buffer ),
-    setInterval : Object.freeze( setInterval ),
-    setTimeout : Object.freeze( setTimeout )
+    crosstalk : crosstalkGlobal,
+    Buffer : Buffer,
+    require : _require( {
+      config : options.config,
+      wrapHttpRequest : wrapHttpRequest,
+      wrapper : wrapper,
+      workerName : wrapper.workerName
+    }),
+    setInterval : setInterval,
+    setTimeout : setTimeout
   };
 
   // log creating a worker
