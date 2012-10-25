@@ -5,7 +5,7 @@
  */
 
 var assert = require( 'assert' ),
-    stdjson = require( 'stdjson' );
+    stdjson = require( 'stdjson' )();
 
 //
 // ### function constructRequire ( options )
