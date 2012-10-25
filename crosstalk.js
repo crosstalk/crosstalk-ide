@@ -17,6 +17,7 @@ var assert = require( 'assert' ),
     http = require( 'http' ),
     https = require( 'https' ),
     multipartParser = require( 'multipartser' ),
+    querystring = require( 'querystring' ),
     semver = require( 'semver' ),
     stdjson = require( 'stdjson' )(),
     underscore = require( 'underscore' ),
@@ -55,6 +56,7 @@ var crosstalk = function crosstalk ( wrapper, options ) {
   context.multipart = {
     parser : multipartParser
   };
+  context.querystring = querystring;
   context.semver = semver;
   context.underscore = underscore;
   context.url = url;
@@ -136,7 +138,7 @@ var crosstalk = function crosstalk ( wrapper, options ) {
       try {
         handler( params, callback );
       } catch ( error ) {
-        stjdson.error( createVmErrorMessage( error, options.workerPath ), 
+        stdjson.error( createVmErrorMessage( error, options.workerPath ), 
            error );
       }
 
