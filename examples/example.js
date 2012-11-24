@@ -1,6 +1,6 @@
 var ide = require( '../index.js' ),
-    workerPath = require.resolve( __dirname + '/test.worker.js' ),
-    workerPath2 = require.resolve( __dirname + '/test.worker2.js' );
+    workerPath = require.resolve( __dirname + '/example.worker.js' ),
+    workerPath2 = require.resolve( __dirname + '/example.worker2.js' );
 
 // instantiate new environment
 var ide = ide();
