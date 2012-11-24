@@ -29,4 +29,4 @@ Finally, for now, `addTestingArtifacts.js` shows more of the testing functionali
 
 More examples are forthcoming.
 
-[How to build a Crosstalk worker](/crosstalk/crosstalk-ide/wiki/HOWTO)
+[How to build a "Hello World" Crosstalk worker](/crosstalk/crosstalk-ide/wiki/Hello-World-HOWTO)
