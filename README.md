@@ -28,3 +28,5 @@ With `example.js` as a start, the next place to look would be at `crosstalk.js` 
 Finally, for now, `addTestingArtifacts.js` shows more of the testing functionality available in the development environment.
 
 More examples are forthcoming.
+
+[How to build a Crosstalk worker](/crosstalk/crosstalk-ide/wiki/HOWTO)
