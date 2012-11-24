@@ -3,12 +3,9 @@
   "version": "1.2.3",
   "description": "Crosstalk Integrated Development Environment",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "git@github.com:crosstalk/ide.git"
+    "url": "git@github.com:crosstalk/crosstalk-ide.git"
   },
   "keywords": [
     "crosstalk",
@@ -31,7 +28,7 @@
   },
   "author": "Crosstalk Systems Inc. <info@crxtalk.com>",
   "maintainers": [
-    "Tristan Slominski <tristan@crxtalk.com>"
+    "Tristan Slominski <tristan.slominski@gmail.com>"
   ],
   "license": "MIT"
 }
