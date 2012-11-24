@@ -1,3 +1,5 @@
+var async = require( 'async' );
+
 crosstalk.emit( 'creating' );
 
 crosstalk.on( 'hello', function ( params ) {
@@ -6,7 +8,7 @@ crosstalk.on( 'hello', function ( params ) {
 
 crosstalk.on( 'async hello', function ( params ) {
 
-  crosstalk.async.waterfall([
+  async.waterfall([
 
     function ( callback ) {
       crosstalk.emit( 'async1' );
@@ -20,6 +22,6 @@ crosstalk.on( 'async hello', function ( params ) {
 
   ], function ( error ) {
     crosstalk.emit( 'done async' );
-  }); // crosstalk.async.waterfall
+  }); // async.waterfall
 
 }); // crosstalk.on 'async hello'
