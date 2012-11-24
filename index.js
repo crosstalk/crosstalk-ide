@@ -3,6 +3,7 @@
  *
  * (C) 2012 Crosstalk Systems Inc.
  */
+"use strict";
 
 var _require = require( './require' ),
     clone = require( './clone' ),
