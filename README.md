@@ -32,3 +32,7 @@ More examples are forthcoming.
 ## HOWTOs
 
 [How to build a "Hello World" Crosstalk worker](/crosstalk/crosstalk-ide/wiki/Hello-World-HOWTO)
+
+## Crosstalk worker environment
+
+[Crosstalk global object and available modules](/crosstalk/crosstalk-ide/wiki/Crosstalk-environment)
