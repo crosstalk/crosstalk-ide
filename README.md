@@ -5,14 +5,6 @@ crosstalk-ide
 
 ## Installation
 
-### Current
-
-    git clone git@github.com:crosstalk/crosstalk-ide.git
-    cd crosstalk-ide
-    npm link
-
-### Future (pending npm release)
-
     npm install crosstalk-ide
 
 ## Usage
