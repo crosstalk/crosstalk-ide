@@ -1,5 +1,5 @@
 {
-  "name": "your-name-testing-shouldEmit",
+  "name": "your-name-testing-shouldBeSilent",
   "version": "0.0.0",
   "description": "Crosstalk 'testing' worker",
   "main": "index.js",
