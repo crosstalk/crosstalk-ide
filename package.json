@@ -1,6 +1,6 @@
 {
   "name": "crosstalk-ide",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "Crosstalk Integrated Development Environment",
   "main": "index.js",
   "repository": {
