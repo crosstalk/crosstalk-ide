@@ -1,0 +1,14 @@
+{
+  "name": "your-name-testing-shouldCallCallback",
+  "version": "0.0.0",
+  "description": "Crosstalk 'testing' worker",
+  "main": "index.js",
+  "devDependencies": {
+    "crosstalk-ide": "1.2.x"
+  },
+  "author": "Your Name <your.name@email.com>",
+  "crosstalk": {
+    "type": "worker"
+  },
+  "private": true
+}
