@@ -11,8 +11,8 @@ ide.comment( "demo of shouldCallCallback test helper" );
 
 var worker;
 
-ide.comment( "on test.shouldCallCallback worker should be silent " +
-  "after first emitted message" );
+ide.comment( "on test.shouldCallCallback worker should call callback " +
+  "with no error" );
 
 worker = ide.run( workerPath );
 worker.send( "test.shouldCallCallback" );
