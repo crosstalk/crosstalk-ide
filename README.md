@@ -9,7 +9,7 @@ crosstalk-ide
 
 ## Usage
 
-For starters, take a look at the `examples` folder and run the examples via:
+For starters, take a look at the [examples](/crosstalk/crosstalk-ide/tree/master/examples) folder and run the examples via:
 
     node example.js
 
