@@ -24,10 +24,13 @@ var wrapHttpRequest = function wrapHttpRequest ( wrapper, protocol ) {
       return https.request.apply( https, arguments );
     }
 
-    wrapper.requestCache[ options.host ] = 
-       wrapper.requestCache[ options.host ] || [];
-    wrapper.requestCache[ options.host ][ options.path ] =
-       wrapper.requestCache[ options.host ][ options.path ] || [];
+    // hostname is preferable, so let's make sure we have that
+    options.hostname = options.hostname || options.host;
+
+    wrapper.requestCache[ options.hostname ] = 
+       wrapper.requestCache[ options.hostname ] || [];
+    wrapper.requestCache[ options.hostname ][ options.path ] =
+       wrapper.requestCache[ options.hostname ][ options.path ] || [];
 
     var request = new events.EventEmitter();
 
@@ -107,7 +110,7 @@ var wrapHttpRequest = function wrapHttpRequest ( wrapper, protocol ) {
       // create http testing helper
       var helper = httpRequestHelper( wrapper, requestObj );
 
-      wrapper.requestCache[ options.host ][ options.path ].push( helper );
+      wrapper.requestCache[ options.hostname ][ options.path ].push( helper );
 
       requestObj = {};
       request.end = function dummyEnd () {};
