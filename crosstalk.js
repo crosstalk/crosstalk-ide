@@ -127,7 +127,7 @@ var crosstalk = function crosstalk ( wrapper, options ) {
         var matches = false;
 
         wrapper.proxy.forEach( function ( regex ) {
-          matches = message.match( regex );
+          if ( message.match( regex ) ) matches = true;
         });
 
         if ( matches ) {
