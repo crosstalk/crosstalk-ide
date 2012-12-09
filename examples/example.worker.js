@@ -6,7 +6,7 @@ crosstalk.on( 'hello', function ( params ) {
   crosstalk.emit( 'world' );
 });
 
-crosstalk.on( 'async hello', function ( params ) {
+crosstalk.on( 'async.hello', function ( params ) {
 
   async.waterfall([
 
@@ -21,7 +21,7 @@ crosstalk.on( 'async hello', function ( params ) {
     }
 
   ], function ( error ) {
-    crosstalk.emit( 'done async' );
+    crosstalk.emit( 'done.async' );
   }); // async.waterfall
 
-}); // crosstalk.on 'async hello'
+}); // crosstalk.on 'async.hello'

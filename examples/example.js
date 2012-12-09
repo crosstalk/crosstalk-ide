@@ -13,20 +13,20 @@ worker.send( 'hello' );
 
 worker.shouldEmit( 'world' );
 
-worker.send( 'async hello' );
+worker.send( 'async.hello' );
 
 worker.shouldEmit( 'async1' )
   .shouldEmit( 'async2' )
-  .shouldEmit( 'done async' )
-  .send( 'async hello' )
-  .shouldEmitNew( 'done async' )
+  .shouldEmit( 'done.async' )
+  .send( 'async.hello' )
+  .shouldEmitNew( 'done.async' )
   .shouldBeSilentFromNowOn();
 
 worker = ide.run( workerPath, { name : 'worker' } );
 
-worker.send( 'async hello' );
+worker.send( 'async.hello' );
 
-worker.shouldEmit( 'done async' );
+worker.shouldEmit( 'done.async' );
 
 worker = ide.run( workerPath2, { name : 'worker' } );
 
