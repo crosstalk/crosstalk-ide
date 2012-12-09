@@ -31,9 +31,9 @@ More examples are forthcoming.
 
 [How to build a "Hello World" Crosstalk worker](/crosstalk/crosstalk-ide/wiki/Hello-World-HOWTO)
 
-## [Examples](/crosstalk/crosstalk-ide/tree/master/examples)
+## Examples
 
-Click on the links to see runnable worker project examples.
+Click on the links to see runnable worker project examples. All examples can be found [here](/crosstalk/crosstalk-ide/tree/master/examples).
 
 ### Make HTTP(S) requests from local worker in development
 
