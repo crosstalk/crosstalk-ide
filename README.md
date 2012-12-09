@@ -27,6 +27,8 @@ More examples are forthcoming.
 
 ## [Examples](/crosstalk/crosstalk-ide/tree/master/examples)
 
+Click on the links to see runnable worker project examples.
+
 ### Make HTTP(S) requests from local worker in development
 
 #### [HTTP example](/crosstalk/crosstalk-ide/blob/master/examples/testing-dontMockHttp/test/dontMockHttp.js)
