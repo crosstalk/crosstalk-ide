@@ -31,7 +31,7 @@ var logHttpRequest = function logHttpRequest ( workerName, request, body,
     method : request.method,
     url : request.url,
     headers : request.headers,
-    body : body
+    body : body ? body.toString() : ""
   });
 
 }; // logHttpRequest

@@ -19,7 +19,7 @@ var logHttpResponse = function logHttpResponse ( workerName, response ) {
     workerName : workerName,
     statusCode : response.statusCode,
     headers : response.headers,
-    body : response.body,
+    body : response.body ? response.body.toString() : "",
     trailers : response.trailers
   });
 
