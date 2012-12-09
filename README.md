@@ -3,6 +3,11 @@ crosstalk-ide
 
 `crosstalk-ide` is a Crosstalk Swarm emulator enabling local Crosstalk Worker development and testing.
 
+* <a href="#installation">Installation</a>
+* <a href="#usge">Usage</a>
+* <a href="#howtos">HOWTOs</a>
+* <a href="#crosstalk-worker-environment">Crosstalk worker environment</a>
+
 ## Installation
 
     npm install crosstalk-ide
