@@ -6,6 +6,7 @@ crosstalk-ide
 * <a href="#installation">Installation</a>
 * <a href="#usge">Usage</a>
 * <a href="#howtos">HOWTOs</a>
+* <a href="#examples">Examples</a>
 * <a href="#crosstalk-worker-environment">Crosstalk worker environment</a>
 
 ## Installation
