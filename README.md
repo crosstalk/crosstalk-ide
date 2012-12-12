@@ -6,7 +6,8 @@ crosstalk-ide
 * <a href="#installation">Installation</a>
 * <a href="#usge">Usage</a>
 * <a href="#howtos">HOWTOs</a>
-* <a href="#examples">Examples</a>
+* <a href="#worker-examples">Worker Examples</a>
+* <a href="#development-examples">Development Examples</a>
 * <a href="#crosstalk-worker-environment">Crosstalk worker environment</a>
 
 ## Installation
@@ -31,7 +32,9 @@ More examples are forthcoming.
 
 [How to build a "Hello World" Crosstalk worker](/crosstalk/crosstalk-ide/wiki/Hello-World-HOWTO)
 
-## Examples
+## Worker Examples
+
+## Development Examples
 
 Click on the links to see runnable worker project examples. All examples can be found [here](/crosstalk/crosstalk-ide/tree/master/examples).
 
