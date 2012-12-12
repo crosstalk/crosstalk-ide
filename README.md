@@ -7,6 +7,7 @@ crosstalk-ide
 * <a href="#usge">Usage</a>
 * <a href="#howtos">HOWTOs</a>
 * <a href="#worker-examples">Worker Examples</a>
+* <a href="#workers-gallery">Workers Gallery</a>
 * <a href="#crosstalk-worker-environment">Crosstalk worker environment</a>
 * <a href="#development-examples">Development Examples</a>
 
@@ -339,6 +340,10 @@ crosstalk.emit( '~crosstalk.api.aws.s3.getObject',
 
 /* the rest of Alice's worker follows as before */
 ```
+
+## Workers Gallery
+
+[Workers Gallery](/crosstalk/crosstalk-ide/wiki/workers-gallery)
 
 ## Crosstalk worker environment
 
