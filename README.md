@@ -5,10 +5,10 @@ crosstalk-ide
 
 * <a href="#installation">Installation</a>
 * <a href="#usge">Usage</a>
+* <a href="#crosstalk-worker-environment">Crosstalk worker environment</a>
+* <a href="#workers-gallery">Workers Gallery</a>
 * <a href="#howtos">HOWTOs</a>
 * <a href="#worker-examples">Worker Examples</a>
-* <a href="#workers-gallery">Workers Gallery</a>
-* <a href="#crosstalk-worker-environment">Crosstalk worker environment</a>
 * <a href="#development-examples">Development Examples</a>
 
 ## Installation
@@ -28,6 +28,14 @@ With `example.js` as a start, the next place to look would be at `crosstalk.js` 
 Finally, for now, `addTestingArtifacts.js` shows more of the testing functionality available in the development environment.
 
 More examples are forthcoming.
+
+## Crosstalk worker environment
+
+[Crosstalk global object and available modules](/crosstalk/crosstalk-ide/wiki/Crosstalk-environment)
+
+## Workers Gallery
+
+[Workers Gallery](/crosstalk/crosstalk-ide/wiki/workers-gallery)
 
 ## HOWTOs
 
@@ -340,14 +348,6 @@ crosstalk.emit( '~crosstalk.api.aws.s3.getObject',
 
 /* the rest of Alice's worker follows as before */
 ```
-
-## Workers Gallery
-
-[Workers Gallery](/crosstalk/crosstalk-ide/wiki/workers-gallery)
-
-## Crosstalk worker environment
-
-[Crosstalk global object and available modules](/crosstalk/crosstalk-ide/wiki/Crosstalk-environment)
 
 ## Development Examples
 
