@@ -188,19 +188,19 @@ module.exports = crosstalk;
 // #### @message {string} message to be logged
 // #### @data {object} data to be logged
 // #### @scope {string|object} scope accepted by listener
-// #### @emmittedScope {string|object} scope emmitted in the event
+// #### @emittedScope {string|object} scope emmitted in the event
 // #### @options {object} options passed in on worker creation
 // Logs failure of message delivery due to scope mismatch
 //
 var logDeliveryFailure = function logDeliveryFailure ( message, data, scope,
-   emmittedScope, options ) {
+   emittedScope, options ) {
 
   if ( ! scope ) {
     scope = "not provided (self)";
   }
 
-  if ( ! emmittedScope ) {
-    emmittedScope = "not provided (self)";
+  if ( ! emittedScope ) {
+    emittedScope = "not provided (self)";
   }
 
   stdjson.log( "NOT AUTHORIZED", {
