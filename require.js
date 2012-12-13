@@ -48,11 +48,7 @@ var constructRequire = function constructRequire ( options ) {
         return require( 'dateformat' );
 
       case 'env':
-        var env = {};
-        env.development = true;
-        env.production = false;
-        env.version = options.wrapper.version;
-        return env;
+        return options.wrapper.env;
 
       case 'http':
         var http = require( 'http' );

@@ -392,3 +392,21 @@ worker = ide.run( workerPath );
 worker.crosstalkToken = "your-crosstalk-session-token"; // from when you login
 worker.proxy = [ "~crosstalk.api.worker.version", "@my.production.worker" ]
 ```
+
+### Mock worker environment
+
+You can set the return value returned by `require( 'env' ).version` to mock what environment version the worker runs in. This only affects this value and does not change the actual `crosstalk-ide` behavior.
+
+#### [version example](/crosstalk/crosstalk-ide/blob/master/examples/testing-version/test/version.js)
+
+```javascript
+worker = ide.run( workerPath );
+worker.version = "0.7.2"; // set value of worker environment
+```
+
+Then within a worker you can get it via:
+
+```javascript
+var env = require( 'env' );
+env.version; // will be "0.7.2"
+```
