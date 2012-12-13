@@ -401,7 +401,7 @@ You can set the return value returned by `require( 'env' ).version` to mock what
 
 ```javascript
 worker = ide.run( workerPath );
-worker.version = "0.7.2"; // set value of worker environment
+worker.env.version = "0.7.2"; // set value of worker environment
 ```
 
 Then within a worker you can get it via:
