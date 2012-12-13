@@ -51,6 +51,7 @@ var constructRequire = function constructRequire ( options ) {
         var env = {};
         env.development = true;
         env.production = false;
+        env.version = options.wrapper.version;
         return env;
 
       case 'http':
