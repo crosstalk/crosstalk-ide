@@ -144,3 +144,52 @@ test( "object scope with 'public' true accepts same organization " +
 
 test( "object scope with 'public' true accepts another organization", true,
    { 'public' : true }, '~acme' );
+
+//
+// scope is an array
+//
+test( "array scope accepts one of specified accounts", true,
+   [ '@bob', '@carl' ], '@carl' );
+
+test( "array scope rejects other than specified accounts", false,
+   [ '@bob', '@carl' ], '@dan' );
+
+test( "array scope accepts one of specified organizations", true,
+   [ '~acme', '~bopo' ], '~bopo' );
+
+test( "array scope rejects other than specified organizations", false,
+   [ '~acme', '~bopo' ], '~coco' );
+
+test( "array scope accepts own organization if 'org' is included", true,
+   [ 'org' ], 'org' );
+
+test( "array scope accepts own organization if 'org' is included", true,
+   [ 'org' ], 'organization' );
+
+test( "array scope rejects other than own organization if only 'org' is " +
+   "included", false, [ 'org' ], '~acme' );
+
+test( "array scope accepts own organization if 'organization' is included",
+   true, [ 'organization' ], 'organization' );
+
+test( "array scope accepts own organization if 'organization' is included",
+   true, [ 'organization' ], 'org' );
+
+test( "array scope rejects other than own organization if only 'organization'" +
+   " is included", false, [ 'organization' ], '~acme' );
+
+test( "array scope with 'public' accepts self", true, [ 'public' ] );
+
+test( "array scope with 'public' accepts self", true, [ 'public' ], 'self' );
+
+test( "array scope with 'public' accepts another account", true, [ 'public' ],
+   '@bob' );
+
+test( "array scope with 'public' accepts same organization", true,
+   [ 'public' ], 'org' );
+
+test( "array scope with 'public' accepts same organization", true,
+   [ 'public' ], 'organization' );
+
+test( "array scope with 'public' accepts another organization", true,
+   [ 'public' ], '~acme' );

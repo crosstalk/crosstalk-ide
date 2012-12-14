@@ -50,8 +50,31 @@ var eventIsAuthorized = function eventIsAuthorized( scope, emmittedScope ) {
     } // switch ( scope )
 
   } // if scope is a string
+  else if ( scope && Array.isArray( scope ) ) {
 
-  if ( scope && typeof( scope ) === 'object' ) {
+    scope.forEach( function ( element ) {
+
+      switch ( element ) {
+
+        case 'public':
+          acceptsPublic = true;
+          break;
+
+        case 'org':
+        case 'organization':
+          acceptable.push( 'org' );
+          acceptable.push( 'organization' );
+
+        default:
+          acceptable.push( element );
+          break;
+
+      } // switch( element )
+
+    }); // scope.forEach
+
+  } // else if scope is an array
+  else if ( scope && typeof( scope ) === 'object' ) {
 
     Object.keys( scope ).forEach( function ( key ) {
 
