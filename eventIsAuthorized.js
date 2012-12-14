@@ -33,6 +33,16 @@ var eventIsAuthorized = function eventIsAuthorized( scope, emmittedScope ) {
         acceptsSelf = true;
         break;
 
+      case 'crosstalk':
+        acceptable.push( '~crosstalk' );
+        break;
+
+      case 'org':
+      case 'organization':
+        acceptable.push( 'org' );
+        acceptable.push( 'organization' );
+        break;
+
       default:
         acceptable.push( scope );
         break;
@@ -53,6 +63,18 @@ var eventIsAuthorized = function eventIsAuthorized( scope, emmittedScope ) {
 
         case 'self':
           scope[ key ] ? acceptsSelf = true : null;
+          break;
+
+        case 'org':
+        case 'organization':
+          if ( scope[ key ] ) {
+            acceptable.push( 'org' );
+            acceptable.push( 'organization' );
+          }
+          break;
+
+        case 'crosstalk':
+          scope[ key ] ? acceptable.push( '~crosstalk' ) : null;
           break;
 
         default:
@@ -86,11 +108,7 @@ var eventIsAuthorized = function eventIsAuthorized( scope, emmittedScope ) {
         return acceptsSelf;
 
       default:
-        for ( var i = 0; i < acceptable.length; i++ ) {
-          if ( emmittedScope == acceptable[ i ] ) {
-            return true;
-          }
-        } // for i in acceptable.length
+        return acceptable.indexOf( emmittedScope ) > -1;
         break;
 
     } // switch ( emmittedScope )

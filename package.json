@@ -4,7 +4,7 @@
   "description": "Crosstalk Integrated Development Environment",
   "main": "index.js",
   "scripts": {
-    "test": "node test/examples.js"
+    "test": "node test/all.js"
   },
   "repository": {
     "type": "git",
