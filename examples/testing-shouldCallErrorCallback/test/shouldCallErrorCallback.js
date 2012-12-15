@@ -15,5 +15,6 @@ ide.comment( "on test.shouldCallErrorCallback worker should call callback " +
   "with error" );
 
 worker = ide.run( workerPath );
-worker.send( "test.shouldCallErrorCallback" );
+worker.send( "test.shouldCallErrorCallback", null /*data*/, null /*scope*/, 
+   true /*callback*/ );
 worker.shouldCallErrorCallback( "test.shouldCallErrorCallback" );

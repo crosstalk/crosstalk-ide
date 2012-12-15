@@ -44,8 +44,8 @@ var workerWrapper = function workerWrapper ( options ) {
 
   wrapper.send = function send ( message, data, scope, callbackFunction ) {
 
-    // add callback if should have one (on by default)
-    callbackFunction = callbackFunction || true;
+    // add callback if should have one (off by default)
+    callbackFunction = callbackFunction || false;
     if ( callbackFunction ) {
       
       callbackFunction = function callbackFunction ( error, response ) {

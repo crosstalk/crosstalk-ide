@@ -6,4 +6,5 @@
 "use strict";
 
 require( './eventIsAuthorized.test' );
+require( './workerWrapper.test' );
 require( './examples' );
