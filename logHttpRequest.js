@@ -29,6 +29,7 @@ var logHttpRequest = function logHttpRequest ( workerName, request, body,
     workerName : workerName,
     host : request.host,
     method : request.method,
+    path : request.path,
     url : request.url,
     headers : request.headers,
     body : body ? body.toString() : ""

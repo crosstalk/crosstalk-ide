@@ -96,7 +96,10 @@ var workerWrapper = function workerWrapper ( options ) {
 
   var crosstalkGlobal = crosstalk( wrapper, options );
 
-  wrapper.env = crosstalkGlobal.env;
+  wrapper.env = {
+    development : true,
+    production : false
+  };
   wrapper.envName = "env-" + options.environmentId ;
   wrapper.workerName = createWorkerName( options );
 
