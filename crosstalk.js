@@ -4,28 +4,10 @@
  * (C) 2012 Crosstalk Systems Inc.
  */
 
-var assert = require( 'assert' ),
-    async = require( 'async' ),
-    clone = require( './clone' ),
-    createVmErrorMessage = require( './createVmErrorMessage' ),
+var createVmErrorMessage = require( './createVmErrorMessage' ),
     createWorkerName = require( './createWorkerName' ),
-    crypto = require( 'crypto' ),
-    data2xml = require( 'data2xml' ),
-    dateformat = require( 'dateformat' ),
-    director = require( 'director' ),
     eventIsAuthorized = require( './eventIsAuthorized' ),
-    http = require( 'http' ),
-    https = require( 'https' ),
-    multipartParser = require( 'multipartser' ),
-    querystring = require( 'querystring' ),
-    semver = require( 'semver' ),
-    stdjson = require( 'stdjson' )(),
-    underscore = require( 'underscore' ),
-    url = require( 'url' ),
-    util = require( 'util' ),
-    uuid = require( 'prefixed-uuid' ),
-    wrapHttpRequest = require( './wrapHttpRequest' ),
-    xml2js = require( 'xml2js' );
+    stdjson = require( 'stdjson' )();
 
 //
 // ### function crosstalk ( wrapper, options )
@@ -43,66 +25,6 @@ var assert = require( 'assert' ),
 var crosstalk = function crosstalk ( wrapper, options ) {
 
   var context = {};
-
-  // expose various libraries
-  context.assert = assert;
-  context.async = async;
-  context.clone = clone;
-  context.config = options.config;
-  context.crypto = crypto;
-  context.data2xml = data2xml;
-  context.dateformat = dateformat;
-  context.inspect = util.inspect;
-  context.multipart = {
-    parser : multipartParser
-  };
-  context.querystring = querystring;
-  context.semver = semver;
-  context.underscore = underscore;
-  context.url = url;
-  context.uuid = uuid;
-  context.xml2js = xml2js;
-
-  // set the development environment
-  context.env = {};
-  context.env.development = true;
-  context.env.production = false;
-
-  // expose partial http library
-  context.http = {
-    STATUS_CODES : http.STATUS_CODES,
-    get : http.get,
-    request : wrapHttpRequest( wrapper, 'http' ),
-    Router : director.http.Router
-  };
-
-  // expose partial https library
-  context.https = {
-    STATUS_CODES : https.STATUS_CODES,
-    get : https.get,
-    request : wrapHttpRequest( wrapper, 'https' ),
-    Router : director.http.Router
-  };
-
-  // add loggers
-  [ "debug", "log", "info", "warn", "error" ].forEach( function ( logger ) {
-
-    context[ logger ] = function () {
-
-      var _args = [],
-          _arguments = arguments;
-
-      Object.keys( _arguments ).forEach( function ( key ) {
-        _args.push( _arguments[ key ] );
-      });
-
-      stdjson[ logger ]( _args.join( ' ' ), {
-        workerName : createWorkerName( options )
-      });
-
-    }; // context[ logger ]
-
-  }); // forEach [ "debug", "log", "info", "warn", "error" ]
 
   // create the emit method
   context.emit = function emit ( message, data, scope, callback ) {
