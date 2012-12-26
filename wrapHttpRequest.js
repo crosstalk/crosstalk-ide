@@ -18,7 +18,7 @@ var wrapHttpRequest = function wrapHttpRequest ( wrapper, protocol ) {
     // if we specifically don't want to mock http requests
     if ( protocol == 'http' && wrapper.dontMockHttp ) {
 
-      logHttpRequest( wrapper.workerName, options, '',
+      logHttpRequest( wrapper.workerName, options, '<body not displayed>',
         { outbound : true, protocol : protocol } );
 
       return http.request.apply( http, arguments );
@@ -27,7 +27,7 @@ var wrapHttpRequest = function wrapHttpRequest ( wrapper, protocol ) {
 
     if ( protocol == 'https' && wrapper.dontMockHttps ) {
 
-      logHttpRequest( wrapper.workerName, options, '', 
+      logHttpRequest( wrapper.workerName, options, '<body not displayed>', 
         { outbound : true, protocol : protocol } );
 
       return https.request.apply( https, arguments );
