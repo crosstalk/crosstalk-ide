@@ -241,6 +241,7 @@ var ide = function ide () {
 
   return {
     anyFunction : matchers.anyFunction,
+    anyInteger : matchers.anyInteger,
     anyString : matchers.anyString,
     capture : matchers.capture,
     clone : clone,

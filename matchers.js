@@ -5,6 +5,7 @@
  */
 
 exports.anyFunction = { matcher : "function" };
+exports.anyInteger = { matcher : "integer" };
 exports.anyString = { matcher : "string" };
 
 //

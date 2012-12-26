@@ -74,6 +74,13 @@ function deepEqual(actual, expected) {
     return actual == expected;
   } else if ( objEquiv( expected, matchers.anyFunction ) ) { // any function
     return ( typeof( actual ) == 'function' );
+  } else if ( objEquiv( expected, matchers.anyInteger ) ) { // any integer
+    try {
+      parseInt( actual );
+      return true;
+    } catch ( exception ) {
+      return false;
+    }
   } else if ( objEquiv( expected, matchers.anyString ) ) { // any string
     return ( typeof( actual ) == 'string' );
   } else if ( expected && expected.matcher == 'capture' ) { // capture matcher
