@@ -163,7 +163,7 @@ var logCallback = function logCallback ( isError, message, data, scope,
 var logPublish = function logPublish ( environmentName, message, data, scope, 
    options ) {
 
-  stdjson.log( "PUBLISH", {
+  stdjson.log( "SEND PUBLISH", {
     workerName : createWorkerName( options ),
     environmentName : environmentName,
     message : message,

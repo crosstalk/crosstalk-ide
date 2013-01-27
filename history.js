@@ -12,13 +12,14 @@ var history = function history () {
   var _in = [];
   var _out = [];
 
-  var inPush = function inPush ( message, params, scope, emmittedScope ) {
+  var inPush = function inPush ( message, params, scope, emmittedScope, type ) {
     
     var event = {};
     message ? event.message = message : null;
     params ? event.params = params : null;
     scope ? event.scope = scope : null;
     emmittedScope ? event.emmittedScope = emmittedScope : null;
+    type ? event.type = type : null;
 
     event.authorized = eventIsAuthorized( scope, emmittedScope );
     event.in = true;

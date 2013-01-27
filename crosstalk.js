@@ -112,6 +112,22 @@ var crosstalk = function crosstalk ( wrapper, options ) {
 
   context.subscribe = function subscribe ( message, handler ) {
 
+    wrapper.on( message, function ( params, emittedScope, callback ) {
+
+      wrapper.history.in( message, params, null, emittedScope, 'pubsub' );
+
+      options.silent ? null : logSubscription( message, params, options );
+
+      // provide meaningful message after failure inside worker vm
+      try {
+        handler( params, callback );
+      } catch ( error ) {
+        stdjson.error( createVmErrorMessage( error, options.workerPath ), 
+           error );
+      }
+
+    }); // wrapper.on
+
   }; // context.subscribe
 
   return context;
@@ -204,3 +220,20 @@ var logReceive = function logReceive ( message, data, options ) {
   });
 
 }; // logReceive
+
+//
+// ### function logSubscription ( message, data, options )
+// #### @message {string} message received by the worker
+// #### @data {object} data received with the event
+// #### @options {object} options passed in on worker creation
+// Logs to the console when a worker receives a message.
+//
+var logSubscription = function logSubscription ( message, data, options ) {
+
+  stdjson.log( "SUBSCRIPTION", {
+    workerName : createWorkerName( options ),
+    message : message,
+    data : data
+  });
+
+}; // logSubscription
