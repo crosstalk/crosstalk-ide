@@ -20,6 +20,7 @@ var METHODS = [
   'shouldCallErrorCallback',
   'shouldEmit', 
   'shouldEmitNew', 
+  'shouldPublish',
   'statusCodeEquals', 
   'worker'
 ];

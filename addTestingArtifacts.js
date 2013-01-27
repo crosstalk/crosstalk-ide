@@ -15,6 +15,7 @@ var assert = require( 'assert' ),
     shouldEmit = require( './shouldEmit' ),
     shouldEmitNew = require( './shouldEmitNew' ),
     shouldNotEmit = require( './shouldNotEmit' ),
+    shouldPublish = require( './shouldPublish' ),
     stdjson = require( 'stdjson' )();
 
 //
@@ -31,6 +32,7 @@ var addTestingArtifacts = function addTestingArtifacts ( wrapper ) {
   wrapper.shouldEmit = shouldEmit( wrapper );
   wrapper.shouldEmitNew = shouldEmitNew( wrapper );
   wrapper.shouldNotEmit = shouldNotEmit( wrapper );
+  wrapper.shouldPublish = shouldPublish( wrapper );
 
   // calls the callback for the last message that matches 'message'
   var callCallback = function callCallback ( message, error, response ) {

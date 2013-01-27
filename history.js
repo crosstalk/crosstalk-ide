@@ -28,13 +28,14 @@ var history = function history () {
 
   }; // inPush
 
-  var outPush = function outPush ( message, params, scope, callback ) {
+  var outPush = function outPush ( message, params, scope, callback, type ) {
 
     var event = {};
     message ? event.message = message : null;
     params ? event.params = params : null;
     scope ? event.scope = scope : null;
     callback ? event.callback = callback : null;
+    type ? event.type = type : null;
 
     event.out = true;
 

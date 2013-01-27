@@ -99,6 +99,21 @@ var crosstalk = function crosstalk ( wrapper, options ) {
 
   }; // context.on
 
+  context.publish = function publish ( message, data, scope, callback ) {
+
+    wrapper.history.out( message, data, scope, callback, 'pubsub' );
+    options.silent ? null : logPublish( message, data, scope, options );
+
+    // there is no proxying to publish because publishing provides no callbacks
+
+    return wrapper.publish( message, data, scope, true );
+
+  }; // context.publish
+
+  context.subscribe = function subscribe ( message, handler ) {
+
+  }; // context.subscribe
+
   return context;
 
 }; // crosstalk
@@ -153,6 +168,25 @@ var logEmit = function logEmit ( message, data, scope, options ) {
   });
   
 }; // logEmit
+
+//
+// ### function logPublish ( message, data, options )
+// #### @message {string} message emitted by the worker
+// #### @data {object} data received with the event
+// #### @scope {string|object} callback scope
+// #### @options {object} options passed in on worker creation
+// Logs to the console when a worker publishes a message.
+//
+var logPublish = function logPublish ( message, data, scope, options ) {
+
+  stdjson.log( "PUBLISH", {
+    workerName : createWorkerName( options ),
+    message : message,
+    data : data,
+    scope : scope
+  });
+
+}; // logPublish
 
 //
 // ### function logReceive ( message, data, options )

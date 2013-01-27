@@ -37,7 +37,7 @@ var shouldEmitNewConstructor = function shouldEmitNewConstructor ( wrapper ) {
 
     // 2. hasn't happened yet so attach an event listener that will trigger 
     //   this world path
-    return createWorldPath( wrapper, message, params, scope, callback, 
+    return createWorldPath( wrapper, eventToMatch, 
        markedOutLength );
 
   }; // shouldEmitNew

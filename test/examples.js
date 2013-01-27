@@ -15,6 +15,7 @@ var examples = [
   'examples/testing-shouldEmit/test/shouldEmit',
   'examples/testing-shouldEmitNew/test/shouldEmitNew',
   'examples/testing-shouldNotEmit/test/shouldNotEmit',
+  'examples/testing-shouldPublish/test/shouldPublish',
   'examples/testing-version/test/version'
 ];
 

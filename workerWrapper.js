@@ -42,6 +42,18 @@ var workerWrapper = function workerWrapper ( options ) {
 
   wrapper.history = history();
 
+  wrapper.publish = function publish ( message, data, scope, alreadyLogged ) {
+
+    if ( ! alreadyLogged ) {
+      logPublish( wrapper.environmentName, message, data, scope, options );
+    }
+
+    wrapper.emit( message, data, scope );
+
+    return wrapper;
+
+  }; // wrapper.publish
+
   wrapper.send = function send ( message, data, scope, callbackFunction ) {
 
     // add callback if should have one (off by default)
@@ -108,7 +120,7 @@ var workerWrapper = function workerWrapper ( options ) {
   return {
     crosstalkGlobal : crosstalkGlobal,
     wrapper : wrapper
-  }
+  };
 
 }; // workerWrapper
 
@@ -138,6 +150,28 @@ var logCallback = function logCallback ( isError, message, data, scope,
   });
 
 }; // logCallback
+
+//
+// ### function logPublish ( environmentName, message, data, scope, options )
+// #### @environmentName {string} environment name that is sending the message
+// #### @message {string} message emitted by the worker
+// #### @data {object} data received with the event
+// #### @scope {string|object} callback scope
+// #### @options {object} options passed in on worker creation
+// Logs to the console when a worker publishes a message.
+//
+var logPublish = function logPublish ( environmentName, message, data, scope, 
+   options ) {
+
+  stdjson.log( "PUBLISH", {
+    workerName : createWorkerName( options ),
+    environmentName : environmentName,
+    message : message,
+    data : data,
+    scope : scope
+  });
+
+}; // logPublish
 
 //
 // ### function logSend ( environmentName, message, data, scope, callback,

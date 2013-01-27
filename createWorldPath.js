@@ -12,10 +12,7 @@ var executeWorldPath = require( './executeWorldPath' ),
 //
 // ### function createWorldPath ( wrapper, message, params, scope, callback )
 // #### @wrapper {object} the worker wrapper to create world path for
-// #### @message {string} the message that will trigger this world path
-// #### @params {object} params for the message that will trigger this path
-// #### @scope {string|object} scope for the message that will trigger this path
-// #### @callback {function} callback for the message
+// #### @eventToMatch {object} the event to match
 // #### @markedOutLength {integer} optional marker for matching historical
 //      event from either beginning or a specific spot
 // Because shouldEmit and other assertions can be chained together, if
@@ -29,25 +26,18 @@ var executeWorldPath = require( './executeWorldPath' ),
 //
 // This creates a world path for future execution.
 //
-var createWorldPath = function createWorldPath ( wrapper, message, params, 
-   scope, callback, markedOutLength ) {
+var createWorldPath = function createWorldPath ( wrapper, eventToMatch, 
+   markedOutLength ) {
 
   var worldPath = [];
 
   // attach to process.on( 'exit' ) in case this world path is never 
   // triggered
   var exitListener = function exitListener () {
-    failedToEmit( wrapper.workerName, message, params, scope, callback );
+    failedToEmit( wrapper.workerName, eventToMatch );
   };
 
   process.on( 'exit', exitListener );
-
-  var eventToMatch = {
-    message : message,
-    params : params,
-    scope : scope,
-    callback : callback
-  };
 
   var listener = function () {
 
@@ -66,7 +56,7 @@ var createWorldPath = function createWorldPath ( wrapper, message, params,
 
     // event matches
 
-    wrapper.removeListener( message, listener );
+    wrapper.removeListener( eventToMatch.message, listener );
     process.removeListener( 'exit', exitListener );
 
     // execute this world path
@@ -75,7 +65,7 @@ var createWorldPath = function createWorldPath ( wrapper, message, params,
 
   }; // listener
 
-  wrapper.on( message, listener );
+  wrapper.on( eventToMatch.message, listener );
 
   // return a world path wrapper that will wait for the listener to fire
   return worldPathWrapper( worldPath );
