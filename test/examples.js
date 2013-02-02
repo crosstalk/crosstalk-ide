@@ -1,4 +1,5 @@
 var examples = [
+  'examples/example-object-capability-security/test/capability',
   'examples/example-scopeObject/test/scopeObject',
   'examples/example-subscribe/test/subscribe',
   'examples/testing-callCallback/test/callCallback',

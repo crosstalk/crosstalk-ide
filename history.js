@@ -12,7 +12,8 @@ var history = function history () {
   var _in = [];
   var _out = [];
 
-  var inPush = function inPush ( message, params, scope, emmittedScope, type ) {
+  var inPush = function inPush ( message, params, scope, emmittedScope, type, 
+     workerReference ) {
     
     var event = {};
     message ? event.message = message : null;
@@ -20,6 +21,7 @@ var history = function history () {
     scope ? event.scope = scope : null;
     emmittedScope ? event.emmittedScope = emmittedScope : null;
     type ? event.type = type : null;
+    workerReference ? event.workerReference = workerReference : null;
 
     event.authorized = eventIsAuthorized( scope, emmittedScope );
     event.in = true;
@@ -29,7 +31,8 @@ var history = function history () {
 
   }; // inPush
 
-  var outPush = function outPush ( message, params, scope, callback, type ) {
+  var outPush = function outPush ( message, params, scope, callback, type,
+     workerReference ) {
 
     var event = {};
     message ? event.message = message : null;
@@ -37,6 +40,7 @@ var history = function history () {
     scope ? event.scope = scope : null;
     callback ? event.callback = callback : null;
     type ? event.type = type : null;
+    workerReference ? event.workerReference = workerReference : null;
 
     event.out = true;
 

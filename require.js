@@ -102,6 +102,9 @@ var constructRequire = function constructRequire ( options ) {
       case 'querystring':
         return require( 'querystring' );
 
+      case 'self':
+        return { __crosstalk__workerReference : options.workerName };
+
       case 'semver':
         return require( 'semver' );
 

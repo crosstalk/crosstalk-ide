@@ -76,6 +76,11 @@ var matches = function matches ( history, expected, i ) {
     return false;
   }
 
+  if ( typeof( expected.workerReference ) !== "undefined"
+     && ! equals( event.workerReference, expected.workerReference ) ) {
+    return false;
+  }
+
   return event;
 
 }; // matches
