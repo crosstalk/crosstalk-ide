@@ -17,7 +17,7 @@ crosstalk-ide
 
 ## Usage
 
-For starters, take a look at the [examples](/crosstalk/crosstalk-ide/tree/master/examples) folder and run the examples via:
+For starters, take a look at the [examples](examples) folder and run the examples via:
 
     node example.js
 
@@ -31,15 +31,15 @@ More examples are forthcoming.
 
 ## Crosstalk worker environment
 
-[Crosstalk global object and available modules](/crosstalk/crosstalk-ide/wiki/Crosstalk-environment)
+[Crosstalk global object and available modules](https://github.com/crosstalk/crosstalk-ide/wiki/Crosstalk-environment)
 
 ## Workers Gallery
 
-[Workers Gallery](/crosstalk/crosstalk-ide/wiki/workers-gallery)
+[Workers Gallery](https://github.com/crosstalk/crosstalk-ide/wiki/workers-gallery)
 
 ## HOWTOs
 
-[How to build a "Hello World" Crosstalk worker](/crosstalk/crosstalk-ide/wiki/Hello-World-HOWTO)
+[How to build a "Hello World" Crosstalk worker](https://github.com/crosstalk/crosstalk-ide/wiki/Hello-World-HOWTO)
 
 ## Worker Examples
 
@@ -351,18 +351,18 @@ crosstalk.emit( '~crosstalk.api.aws.s3.getObject',
 
 ## Development Examples
 
-Click on the links to see runnable worker project examples. All examples can be found [here](/crosstalk/crosstalk-ide/tree/master/examples).
+Click on the links to see runnable worker project examples. All examples can be found [here](examples).
 
 ### Make HTTP(S) requests from local worker in development
 
-#### [HTTP example](/crosstalk/crosstalk-ide/blob/master/examples/testing-dontMockHttp/test/dontMockHttp.js)
+#### [HTTP example](examples/testing-dontMockHttp/test/dontMockHttp.js)
 
 ```javascript
 worker = ide.run( workerPath );
 worker.dontMockHttp = true;
 ```
 
-#### [HTTPS example](/crosstalk/crosstalk-ide/tree/master/examples/testing-dontMockHttps/test/dontMockHttps.js)
+#### [HTTPS example](examples/testing-dontMockHttps/test/dontMockHttps.js)
 
 ```javascript
 worker = ide.run( workerPath );
@@ -371,7 +371,7 @@ worker.dontMockHttps = true;
 
 ### Mock HTTP(S) responses
 
-#### [HTTP(S) response example](/crosstalk/crosstalk-ide/blob/master/examples/testing-sendHttpResponseTo/test/sendHttpResponseTo.js)
+#### [HTTP(S) response example](examples/testing-sendHttpResponseTo/test/sendHttpResponseTo.js)
 
 ```javascript
 worker = ide.run( workerPath );
@@ -385,7 +385,7 @@ worker
 
 ### Send messages to Crosstalk Swarm from local worker in development
 
-#### [proxy example](/crosstalk/crosstalk-ide/blob/master/examples/testing-proxy/test/proxy.js)
+#### [proxy example](examples/testing-proxy/test/proxy.js)
 
 ```javascript
 worker = ide.run( workerPath );
@@ -397,7 +397,7 @@ worker.proxy = [ "~crosstalk.api.worker.version", "@my.production.worker" ]
 
 You can set the return value returned by `require( 'env' ).version` to mock what environment version the worker runs in. This only affects this value and does not change the actual `crosstalk-ide` behavior.
 
-#### [version example](/crosstalk/crosstalk-ide/blob/master/examples/testing-version/test/version.js)
+#### [version example](examples/testing-version/test/version.js)
 
 ```javascript
 worker = ide.run( workerPath );
