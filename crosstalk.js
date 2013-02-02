@@ -29,6 +29,10 @@ var crosstalk = function crosstalk ( wrapper, options ) {
   // create the emit method
   context.emit = function emit ( message, data, scope, callback ) {
 
+    if ( typeof( data ) != 'undefined' && typeof( data ) != 'object' ) {
+      throw new Error( "'data', if provided, must be an object" );
+    }
+
     wrapper.history.out( message, data, scope, callback );
     options.silent ? null : logEmit( message, data, scope, options );
 
