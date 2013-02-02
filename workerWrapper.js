@@ -9,7 +9,8 @@ var addTestingArtifacts = require( './addTestingArtifacts' ),
     crosstalk = require( './crosstalk' ),
     events = require( 'eventemitter2' ),
     history = require( './history' ),
-    stdjson = require( 'stdjson' )();
+    stdjson = require( 'stdjson' )(),
+    util = require( 'util' );
 
 //
 // ### function workerWrapper ( options )
@@ -54,7 +55,31 @@ var workerWrapper = function workerWrapper ( options ) {
 
   }; // wrapper.publish
 
-  wrapper.send = function send ( message, data, scope, callbackFunction ) {
+  wrapper.send = function send ( workerReference, message, data, scope, 
+     callbackFunction ) {
+
+    // workerReference is optional
+    if ( typeof( workerReference ) != 'object' ) {
+      
+      callbackFunction = scope;
+      scope = data;
+      data = message;
+      message = workerReference;
+      workerReference = null;
+
+    } else {
+
+      if ( workerReference.__crosstalk__workerReference != 
+         createWorkerName( options ) ) {
+
+        throw new Error( "When providing workerReference in worker.send() ("+
+           workerReference.__crosstalk__workerReference + "), it" +
+           " must match the receiving worker reference (" +
+           createWorkerName( options ) + ")" );
+
+      } // if references don't match
+
+    } // else
 
     // add callback if should have one (off by default)
     callbackFunction = callbackFunction || false;
@@ -100,7 +125,7 @@ var workerWrapper = function workerWrapper ( options ) {
     logSend( wrapper.environmentName, message, data, scope, callbackFunction,
        options );
 
-    wrapper.emit( message, data, scope, callbackFunction );
+    wrapper.emit( message, data, scope, callbackFunction, workerReference );
 
     return wrapper;
 
@@ -114,6 +139,7 @@ var workerWrapper = function workerWrapper ( options ) {
   };
   wrapper.envName = "env-" + options.environmentId ;
   wrapper.workerName = createWorkerName( options );
+  wrapper.reference = { __crosstalk__workerReference : wrapper.workerName };
 
   wrapper = addTestingArtifacts( wrapper );
 

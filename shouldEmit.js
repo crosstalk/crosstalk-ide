@@ -22,7 +22,19 @@ var shouldEmitConstructor = function shouldEmitConstructor ( wrapper, options ) 
   var messagePrefix = options.messagePrefix || null;
   var messagePostfix = options.messagePostfix || null;
 
-  var shouldEmit = function shouldEmit ( message, params, scope, callback ) {
+  var shouldEmit = function shouldEmit ( workerReference, message, params, 
+     scope, callback ) {
+
+    // workerReference is optional
+    if ( typeof( workerReference ) != 'object' ) {
+
+      callback = scope;
+      scope = params;
+      params = message;
+      message = workerReference;
+      workerReference = null;
+
+    } // if ( typeof( workerReference ) != 'object' )
 
     var _message = message;
 
@@ -40,6 +52,8 @@ var shouldEmitConstructor = function shouldEmitConstructor ( wrapper, options ) 
       scope : scope,
       callback : callback
     };
+
+    if ( workerReference ) eventToMatch.workerReference = workerReference;
 
     // 1. check history to see if this already happened
     if ( matchesHistoricalEvent( history._out, eventToMatch ) ) {

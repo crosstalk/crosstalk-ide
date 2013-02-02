@@ -27,13 +27,23 @@ var crosstalk = function crosstalk ( wrapper, options ) {
   var context = {};
 
   // create the emit method
-  context.emit = function emit ( message, data, scope, callback ) {
+  context.emit = function emit ( workerReference, message, data, scope, 
+     callback ) {
+
+    // workerReference is optional
+    if ( typeof( workerReference ) != 'object' ) {
+      callback = scope;
+      scope = data;
+      data = message;
+      message = workerReference;
+      workerReference = null;
+    }
 
     if ( typeof( data ) != 'undefined' && typeof( data ) != 'object' ) {
       throw new Error( "'data', if provided, must be an object" );
     }
 
-    wrapper.history.out( message, data, scope, callback );
+    wrapper.history.out( message, data, scope, callback, null, workerReference );
     options.silent ? null : logEmit( message, data, scope, options );
 
     // if we are proxying to crosstalk swarm, send the message out
@@ -42,6 +52,13 @@ var crosstalk = function crosstalk ( wrapper, options ) {
       if ( ! Array.isArray( wrapper.proxy ) ) {
 
         if ( message.match( wrapper.proxy  ) ) {
+
+          // can't proxy object capability security
+          if ( workerReference ) {
+            throw new Error( "Cannot proxy object capability security " +
+               "(can't send to Crosstalk Swarm a message addressed to " +
+               "local emulation of worker reference)" );
+          }
 
           return wrapper.proxySend( wrapper.crosstalkToken, message, data, 
              scope, callback );
@@ -58,6 +75,13 @@ var crosstalk = function crosstalk ( wrapper, options ) {
 
         if ( matches ) {
 
+          // can't proxy object capability security
+          if ( workerReference ) {
+            throw new Error( "Cannot proxy object capability security " +
+               "(can't send to Crosstalk Swarm a message addressed to " +
+               "local emulation of worker reference)" );
+          }
+
           return wrapper.proxySend( wrapper.crosstalkToken, message, data, 
              scope, callback );
 
@@ -67,12 +91,22 @@ var crosstalk = function crosstalk ( wrapper, options ) {
 
     } // if ( wrapper.proxy && message )
     
-    return wrapper.emit( message, data, scope, callback );
+    return wrapper.emit( message, data, scope, callback, workerReference );
 
   }; // context.emit
 
   // create the on method
-  context.on = function on ( message, scope, handler ) {
+  context.on = function on ( workerReference, message, scope, handler ) {
+
+    // workerReference is optional
+    if ( typeof( workerReference ) != 'object' ) {
+
+      handler = scope;
+      scope = message;
+      message = workerReference;
+      workerReference = null;
+
+    }
 
     // scope is optional and not a function
     if ( typeof( scope ) === 'function' ) {
@@ -80,9 +114,11 @@ var crosstalk = function crosstalk ( wrapper, options ) {
       scope = null;
     }
 
-    wrapper.on( message, function ( params, emittedScope, callback ) {
+    wrapper.on( message, function ( params, emittedScope, callback, 
+       workerReference ) {
 
-      wrapper.history.in( message, params, scope, emittedScope );
+      wrapper.history.in( message, params, scope, emittedScope, null, 
+         workerReference );
 
       if ( ! eventIsAuthorized( scope, emittedScope ) ) {
         return logDeliveryFailure( message, params, scope, emittedScope,

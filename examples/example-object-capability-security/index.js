@@ -5,7 +5,8 @@
  */
 "use strict";
 
-var logger = require( 'logger' ),
+var inspect = require( 'inspect' ),
+    logger = require( 'logger' ),
     thisWorkerReference = require( 'self' );
 
 crosstalk.on( thisWorkerReference, 'start', function ( params ) {
@@ -16,5 +17,5 @@ crosstalk.on( thisWorkerReference, 'start', function ( params ) {
 });
 
 crosstalk.on( thisWorkerReference, 'some.message', function ( params ) {
-  logger.info( params );
+  logger.info( inspect( params ) );
 });

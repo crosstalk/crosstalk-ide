@@ -18,7 +18,19 @@ var shouldEmitNewConstructor = function shouldEmitNewConstructor ( wrapper ) {
 
   var history = wrapper.history;
 
-  var shouldEmitNew = function shouldEmitNew ( message, params, scope, callback ) {
+  var shouldEmitNew = function shouldEmitNew ( workerReference, message, params, 
+     scope, callback ) {
+
+    // workerReference is optional
+    if ( typeof( workerReference ) != 'object' ) {
+
+      callback = scope;
+      scope = params;
+      params = message;
+      message = workerReference;
+      workerReference = null;
+
+    } // if ( typeof( workerReference ) != 'object' )
 
     var markedOutLength = history._out.length;
 
@@ -28,6 +40,8 @@ var shouldEmitNewConstructor = function shouldEmitNewConstructor ( wrapper ) {
       scope : scope,
       callback : callback
     };
+
+    if ( workerReference ) eventToMatch.workerReference = workerReference;
 
     // 1. check history since markedOutLength if this already happened
     if ( matchesHistoricalEvent( history._out.slice( markedOutLength ), 
