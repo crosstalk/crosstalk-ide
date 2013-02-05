@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "async": "0.1.18",
+    "crosstalkify": "0.1.0",
     "data2xml": "0.4.0",
     "dateformat": "1.0.2-1.2.3",
     "director": "1.1.2",
