@@ -8,8 +8,10 @@
 var _require = require( './require' ),
     clone = require( './clone' ),
     createVmErrorMessage = require( './createVmErrorMessage' ),
+    crosstalkify = require( 'crosstalkify' ),
     fs = require( 'fs' ),
     matchers = require( './matchers' ),
+    path = require( 'path' ),
     request = require( 'request' ),
     stdjson = require( 'stdjson' )(),
     workerWrapper = require( './workerWrapper' ),
@@ -62,8 +64,9 @@ var run = function run ( workerPath, options, callback ) {
   var wrapperOptions = clone( options );
   wrapperOptions.workerPath = workerPath;
 
-  // load worker script
-  var workerScript = fs.readFileSync( workerPath, 'utf8' );
+  // build worker script
+  var bundle = crosstalkify( { directory : path.dirname( workerPath ) } )
+  var workerScript = bundle.bundle();
 
   var wrapperAndCrosstalkGlobal = workerWrapper( wrapperOptions );
   var wrapper = wrapperAndCrosstalkGlobal.wrapper;
@@ -93,8 +96,16 @@ var run = function run ( workerPath, options, callback ) {
     stdjson.info( "CREATED", { workerId : wrapper.workerName } );
 
   } catch ( error ) {
+ 
+    if ( ! fs.existsSync( path.join( path.dirname( workerPath ), 'build' ) ) ) {
+      fs.mkdirSync( path.join( path.dirname( workerPath ), 'build' ) );
+    }
 
-    stdjson.error( createVmErrorMessage( error, workerPath ), error );
+    var builtFilePath = path.resolve( 
+           path.join( path.dirname( workerPath ), './build/worker.js' ) );
+
+    fs.writeFileSync( builtFilePath, workerScript );
+    stdjson.error( createVmErrorMessage( error, builtFilePath ), error );
     return callback ? callback( error ) : error;
 
   } // catch ( error )

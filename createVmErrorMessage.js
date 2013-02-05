@@ -57,7 +57,7 @@ var createVmErrorMessage = function createVmErrorMessage ( error, workerPath ) {
   var reportedPath = evalmachineMatch ? workerPath : pathMatch[ 1 ];
 
   message += "Error on line " + errorLine + ", column " + errorColumn +
-     " in " + reportedPath;
+     " in " + reportedPath + " ";
 
   if ( evalmachineMatch ) {
 
