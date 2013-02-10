@@ -34,6 +34,9 @@ var sendTest = function sendTest ( message, expected, event, data, scope,
 
   process.on( 'exit', exitListener );
 
+  // data should be an empty object by default
+  expected.data = expected.data || {};
+
   wrapper.on( event, function ( data, scope, callbackFunction ) {
 
     process.removeListener( 'exit', exitListener );

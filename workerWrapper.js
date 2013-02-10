@@ -122,6 +122,9 @@ var workerWrapper = function workerWrapper ( options ) {
       callbackFunction = null;
     }
 
+    // make sure data is an object
+    data = data || {};
+
     logSend( wrapper.environmentName, message, data, scope, callbackFunction,
        options );
 
