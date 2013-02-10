@@ -4,7 +4,8 @@
  * (C) 2012 Crosstalk Systems Inc.
  */
 
-var createVmErrorMessage = require( './createVmErrorMessage' ),
+var clone = require( './clone' ),
+    createVmErrorMessage = require( './createVmErrorMessage' ),
     createWorkerName = require( './createWorkerName' ),
     eventIsAuthorized = require( './eventIsAuthorized' ),
     stdjson = require( 'stdjson' )();
@@ -43,7 +44,8 @@ var crosstalk = function crosstalk ( wrapper, options ) {
       throw new Error( "'data', if provided, must be an object" );
     }
 
-    wrapper.history.out( message, data, scope, callback, null, workerReference );
+    wrapper.history.out( message, clone( data ), scope, callback, null, 
+       workerReference );
     options.silent ? null : logEmit( message, data, scope, options );
 
     // if we are proxying to crosstalk swarm, send the message out
@@ -117,7 +119,7 @@ var crosstalk = function crosstalk ( wrapper, options ) {
     wrapper.on( message, function ( params, emittedScope, callback, 
        workerReference ) {
 
-      wrapper.history.in( message, params, scope, emittedScope, null, 
+      wrapper.history.in( message, clone( params ), scope, emittedScope, null, 
          workerReference );
 
       if ( ! eventIsAuthorized( scope, emittedScope ) ) {
@@ -141,7 +143,7 @@ var crosstalk = function crosstalk ( wrapper, options ) {
 
   context.publish = function publish ( message, data, scope, callback ) {
 
-    wrapper.history.out( message, data, scope, callback, 'pubsub' );
+    wrapper.history.out( message, clone( data ), scope, callback, 'pubsub' );
     options.silent ? null : logPublish( message, data, scope, options );
 
     // there is no proxying to publish because publishing provides no callbacks
@@ -154,7 +156,8 @@ var crosstalk = function crosstalk ( wrapper, options ) {
 
     wrapper.on( message, function ( params, emittedScope, callback ) {
 
-      wrapper.history.in( message, params, null, emittedScope, 'pubsub' );
+      wrapper.history.in( message, clone( params ), null, emittedScope, 
+         'pubsub' );
 
       options.silent ? null : logSubscription( message, params, options );
 
