@@ -5,6 +5,8 @@
  */
 "use strict";
 
+var retriableEmit = require( './retriableEmit' );
+
 var doImportantStuff = function ( importantData ) {
   // do things...
   crosstalk.emit( 'doing.important.stuff' );
@@ -24,30 +26,10 @@ crosstalk.on( 'dont.acknowledge.me', function () {});
 
 
 // send message that will be acknowledged
-var sendImportantMessage = function sendImportantMessage () {
-
-  crosstalk.emit( 'acknowledge.me', { important : 'data' }, function ( error, response ) {
-
-    // if the callback isn't called within the timeout (default 5 seconds)
-    // send the important message again
-    if ( error && error.timeout ) return sendImportantMessage();
-
-    crosstalk.emit( 'called back', response );
-
-  }); // crosstalk.emit @you.acknowledge.me
-
-}; // sendImportantMessage
-
-sendImportantMessage();
+retriableEmit( 'acknowledge.me', { important : 'data' }, function ( error, response ) {
+  crosstalk.emit( 'called back', response );
+});
 
 // send message that will not be acknowledged, and retry on failure
 // see test/reliable.js that this keeps on retrying
-var sendNotAcknowledgeMessage = function sendNotAcknowledgeMessage () {
-
-  crosstalk.emit( 'dont.acknowledge.me', {}, function ( error, response ) {
-    if ( error && error.timeout ) return sendNotAcknowledgeMessage();
-  });
-
-}; // sendNotAcknowledgeMessage
-
-sendNotAcknowledgeMessage();
+retriableEmit( 'dont.acknowledge.me', {} );
