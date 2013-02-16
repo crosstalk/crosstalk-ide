@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "Crosstalk 'testing' worker",
   "main": "index.js",
+  "scripts": {
+    "test": "node --harmony test/subscribe.js"
+  },
   "devDependencies": {
     "crosstalk-ide": "2.x.x"
   },

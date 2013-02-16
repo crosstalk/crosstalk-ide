@@ -3,8 +3,11 @@
   "version": "0.0.0",
   "description": "Crosstalk 'testing' worker",
   "main": "index.js",
+  "scripts": {
+    "test": "node --harmony test/httpResponseFor.js"
+  },
   "devDependencies": {
-    "crosstalk-ide": "1.2.x"
+    "crosstalk-ide": "2.x.x"
   },
   "author": "Your Name <your.name@email.com>",
   "crosstalk": {
