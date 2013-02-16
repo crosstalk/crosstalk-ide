@@ -40,6 +40,14 @@ var crosstalk = function crosstalk ( wrapper, options ) {
       workerReference = null;
     }
 
+    // scope is optional and not a function
+    if ( typeof( scope ) === 'function' ) {
+
+      callback = scope;
+      scope = null;
+
+    } // if ( typeof( scope ) === 'function' )
+
     if ( typeof( data ) != 'undefined' && typeof( data ) != 'object' ) {
       throw new Error( "'data', if provided, must be an object" );
     }

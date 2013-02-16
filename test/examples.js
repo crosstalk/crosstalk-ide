@@ -10,6 +10,7 @@ var examples = [
   'examples/testing-httpResponseFor/test/httpResponseFor',
   //'examples/testing-proxy/test/proxy', // requires crosstalk token
   'examples/testing-sendHttpResponseTo/test/sendHttpResponseTo',
+  'examples/testing-shouldAcceptImplicitSelfScope/test/shouldAccept',
   'examples/testing-shouldBeSilent/test/shouldBeSilent',
   'examples/testing-shouldBeSilentFromNowOn/test/shouldBeSilentFromNowOn',
   'examples/testing-shouldCallCallback/test/shouldCallCallback',
