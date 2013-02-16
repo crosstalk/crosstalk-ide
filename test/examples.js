@@ -1,5 +1,6 @@
 var examples = [
   'examples/example-object-capability-security/test/capability',
+  'examples/example-reliable-messaging/test/reliable',
   'examples/example-scopeObject/test/scopeObject',
   'examples/example-subscribe/test/subscribe',
   'examples/testing-callCallback/test/callCallback',
