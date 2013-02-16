@@ -14,6 +14,7 @@ var examples = [
   'examples/testing-shouldBeSilent/test/shouldBeSilent',
   'examples/testing-shouldBeSilentFromNowOn/test/shouldBeSilentFromNowOn',
   'examples/testing-shouldCallCallback/test/shouldCallCallback',
+  'examples/testing-shouldCallCallbackFromWorker/test/shouldCallCallback',
   'examples/testing-shouldCallErrorCallback/test/shouldCallErrorCallback',
   'examples/testing-shouldEmit/test/shouldEmit',
   'examples/testing-shouldEmitNew/test/shouldEmitNew',

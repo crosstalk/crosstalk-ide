@@ -1,7 +1,7 @@
 /*
  * crosstalk.js: Crosstalk context emulator constructor helper.
  *
- * (C) 2012 Crosstalk Systems Inc.
+ * (C) 2012-2013 Crosstalk Systems Inc.
  */
 
 var clone = require( './clone' ),
@@ -51,6 +51,47 @@ var crosstalk = function crosstalk ( wrapper, options ) {
     if ( typeof( data ) != 'undefined' && typeof( data ) != 'object' ) {
       throw new Error( "'data', if provided, must be an object" );
     }
+
+    if ( callback ) {
+
+      // wrap callback with telemetry for testing purposes
+      var originalCallback = callback;
+      callback = function ( error, response ) {
+
+        if ( error ) {
+
+          if ( typeof( error ) == 'string' ) {
+            error = { message : error };
+          }
+
+          error = error || {};
+
+          wrapper.history.out( '@callback.' + message + '.error', error );
+          if ( ! options.silent ) {
+            logCallback( true, message, error, scope, options );
+          }
+          wrapper.emit( '@callback.' + message + '.error', error );
+          return originalCallback( error, response );
+
+        } // if error
+
+        if ( typeof( response ) != 'object' &&
+           typeof( response ) != 'undefined' ) {
+          response = { response : response };
+        }
+
+        response = response || {};
+
+        wrapper.history.out( '@callback.' + message + '.response', response );
+        if ( ! options.silent ) {
+          logCallback( false, message, response, scope, options );
+        }
+        wrapper.emit( '@callback.' + message + '.response', response );
+        return originalCallback( error, response );
+
+      }; // callback
+
+    } // if ( callback )
 
     wrapper.history.out( message, clone( data ), scope, callback, null, 
        workerReference );
@@ -186,6 +227,31 @@ var crosstalk = function crosstalk ( wrapper, options ) {
 }; // crosstalk
 
 module.exports = crosstalk;
+
+//
+// ### function logCallback ( isError, message, data, scope, options )
+// #### @isError {boolean} determines if callback is error callback or response
+// #### @message {string} message emmitted in the callback
+// #### @data {object} data received with the callback
+// #### @scope {string|object} callback emitted scope
+// #### @options {object} options passed in on worker creation
+// Logs to the console when a worker calls a callback.
+//
+var logCallback = function logCallback ( isError, message, data, scope, 
+   options ) {
+
+  var call = isError ? stdjson.error : stdjson.info;
+
+  call( "CALLBACK", { 
+    workerName : createWorkerName( options ),
+    kind : isError ? "ERROR" : "RESPONSE",
+    message : message,
+    data : data,
+    scope : scope,
+    hasCallback : false
+  });
+
+}; // logCallback
 
 //
 // ### function logDeliverFailure ( message, data, options )

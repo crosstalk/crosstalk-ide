@@ -1,7 +1,7 @@
 /*
  * workerWrapper.js: Wrapper around Crosstalk worker to interact with IDE
  *
- * (C) 2012 Crosstalk Systems Inc.
+ * (C) 2012-2013 Crosstalk Systems Inc.
  */
 
 var addTestingArtifacts = require( './addTestingArtifacts' ),
