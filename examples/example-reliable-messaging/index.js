@@ -14,11 +14,11 @@ var doImportantStuff = function ( importantData ) {
 
 crosstalk.on( 'acknowledge.me', function ( params, callback ) {
 
-  // acknowledge message right away
-  if ( callback ) callback( null, { your : 'protocol for acknowledging' } );
-
   // process the data
   doImportantStuff( params );
+
+  // acknowledge message after done processing it
+  if ( callback ) callback( null, { your : 'protocol for acknowledging' } );
 
 });
 
